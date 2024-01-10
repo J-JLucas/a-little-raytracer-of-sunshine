@@ -19,18 +19,20 @@ void testTuple()
   assert(!Tuple::Equal(v, p) && "v should not be equal to p");
   assert(Tuple::Equal(v, w) && "v should be equal to w");
   assert(!Tuple::Equal(v, g) && "v should not be equal to p");
-  
+
   assert(Tuple::Equal(p, p) && "p should be equal to p");
   assert(Tuple::Equal(p, q) && "p should be equal to q");
   assert(!Tuple::Equal(p, r) && "p should not be equal to r");
-  
 }
-int main(int argc, char *argv[]) {
-    try {
-        testTuple();
-        std::cout << "All tests passed.\n";
-    } catch (const char* msg) {
-        std::cerr << "Assertion failed: " << msg << '\n';
-    }
-    return 0;
+
+int main(int argc, char *argv[])
+{
+  try {
+    testTuple();
+    std::cout << "All tests passed!\n";
+  }
+  catch (const char *msg) {
+    std::cerr << "Assertion failed: " << msg << '\n';
+  }
+  return 0;
 }
