@@ -1,4 +1,10 @@
 #include "tuple.h"
+#include <cstdlib>
+
+bool Tuple::floatEqual(float a, float b) const
+{
+  return std::abs((a - b)) < EPSILON;
+}
 
 bool Tuple::operator==(const Tuple &rhs) const
 {

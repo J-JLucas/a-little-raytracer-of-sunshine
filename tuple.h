@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <cstdlib>
 class Tuple {
 
 private:
@@ -19,10 +18,7 @@ public:
 
 private:
   Tuple(float x, float y, float z, bool w = false) : x(x), y(y), z(z), w(w) {}
-  bool floatEqual(float a, float b) const
-  {
-    return std::abs((a - b)) < EPSILON;
-  }
+  bool floatEqual(float a, float b) const;
 
 public:
   static Tuple vector(float x, float y, float z) { return Tuple(x, y, z); }
