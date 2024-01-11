@@ -1,16 +1,16 @@
 #include "tuple.h"
 
-bool Tuple::Equal(Tuple a, Tuple b)
+bool Tuple::operator==(const Tuple &rhs) const
 {
-  if (a.w != b.w) // points and vectors are not equal
+  if (w != rhs.w) // points and vectors are not equal
     return false;
-  if (!floatEqual(a.x, b.x)) {
-    return false;
-  }
-  if (!floatEqual(a.y, b.y)) {
+  if (!floatEqual(x, rhs.x)) {
     return false;
   }
-  if (!floatEqual(a.z, b.z)) {
+  if (!floatEqual(y, rhs.y)) {
+    return false;
+  }
+  if (!floatEqual(z, rhs.z)) {
     return false;
   }
   return true;

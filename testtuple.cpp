@@ -15,18 +15,17 @@ void testTuple()
   assert(v.w == 0 && "v should be a vector");
   assert(p.w == 1 && "p should be a point");
 
-  assert(Tuple::Equal(v, v) && "v should be equal to v");
-  assert(!Tuple::Equal(v, p) && "v should not be equal to p");
-  assert(Tuple::Equal(v, w) && "v should be equal to w");
-  assert(!Tuple::Equal(v, g) && "v should not be equal to p");
+  assert((v == v) && "v should be equal to v");
+  assert((v != p) && "v should not be equal to p");
+  assert((v == w) && "v should be equal to w");
+  assert((v != g) && "v should not be equal to p");
 
-  assert(Tuple::Equal(p, p) && "p should be equal to p");
-  assert(Tuple::Equal(p, q) && "p should be equal to q");
-  assert(!Tuple::Equal(p, r) && "p should not be equal to r");
+  assert((p == p) && "p should be equal to p");
+  assert((p == q) && "p should be equal to q");
+  assert((p != r) && "p should not be equal to r");
 
-  Tuple AddTest = v + g;
-  std::cout << "v + g = " << AddTest.x << ", " << AddTest.y << ", " << AddTest.z
-            << '\n';
+  assert((v + g == Tuple::vector(7.0f, 7.0f, 7.0f)) &&
+         "v + g should be equal to (7, 7, 7)");
 }
 
 int main(int argc, char *argv[])

@@ -19,7 +19,7 @@ public:
 
 private:
   Tuple(float x, float y, float z, bool w = false) : x(x), y(y), z(z), w(w) {}
-  static bool floatEqual(float a, float b)
+  bool floatEqual(float a, float b) const
   {
     return std::abs((a - b)) < EPSILON;
   }
@@ -27,7 +27,9 @@ private:
 public:
   static Tuple vector(float x, float y, float z) { return Tuple(x, y, z); }
   static Tuple point(float x, float y, float z) { return Tuple(x, y, z, true); }
-  static bool Equal(Tuple a, Tuple b);
-  Tuple operator+(
-      const Tuple &rhs) const; // const because don't want to modify operands
+
+  // operations are const because don't want to modify operands
+  bool operator==(const Tuple &rhs) const;
+  bool operator!=(const Tuple &rhs) const { return !(*this == rhs); }
+  Tuple operator+(const Tuple &rhs) const;
 };
