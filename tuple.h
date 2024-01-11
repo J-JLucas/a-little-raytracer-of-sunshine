@@ -28,4 +28,6 @@ public:
   static Tuple vector(float x, float y, float z) { return Tuple(x, y, z); }
   static Tuple point(float x, float y, float z) { return Tuple(x, y, z, true); }
   static bool Equal(Tuple a, Tuple b);
+  Tuple operator+(
+      const Tuple &rhs) const; // const because don't want to modify operands
 };

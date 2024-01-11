@@ -15,3 +15,8 @@ bool Tuple::Equal(Tuple a, Tuple b)
   }
   return true;
 }
+
+Tuple Tuple::operator+(const Tuple &rhs) const
+{
+  return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, w);
+}

@@ -23,6 +23,10 @@ void testTuple()
   assert(Tuple::Equal(p, p) && "p should be equal to p");
   assert(Tuple::Equal(p, q) && "p should be equal to q");
   assert(!Tuple::Equal(p, r) && "p should not be equal to r");
+
+  Tuple AddTest = v + g;
+  std::cout << "v + g = " << AddTest.x << ", " << AddTest.y << ", " << AddTest.z
+            << '\n';
 }
 
 int main(int argc, char *argv[])
