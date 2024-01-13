@@ -20,11 +20,11 @@ private:
   Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 
 public:
-  static Tuple vector(float x, float y, float z)
+  static Tuple Vector(float x, float y, float z)
   {
     return Tuple(x, y, z, 0.0f);
   }
-  static Tuple point(float x, float y, float z) { return Tuple(x, y, z, 1.0f); }
+  static Tuple Point(float x, float y, float z) { return Tuple(x, y, z, 1.0f); }
 
   // operations are const because don't want to modify operands
   static bool floatEqual(float a, float b);

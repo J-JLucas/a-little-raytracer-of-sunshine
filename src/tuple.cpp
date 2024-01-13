@@ -65,6 +65,6 @@ Tuple Tuple::cross(Tuple v, Tuple w)
 {
   assert((v.w == 0 && w.w == 0) &&
          "Cross Product requires two vector operands");
-  return vector((v.y * w.z) - (v.z * w.y), (v.z * w.x) - (v.x * w.z),
+  return Vector((v.y * w.z) - (v.z * w.y), (v.z * w.x) - (v.x * w.z),
                 (v.x * w.y) - (v.y * w.x));
 }
