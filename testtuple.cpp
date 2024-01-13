@@ -38,6 +38,10 @@ void testTuple()
          "p - g should be equal to (-5, -3, -1)");
   assert((r - p == Tuple::vector(5.0f, 3.0f, 1.0f)) &&
          "r - p should be equal to (5, 3, 1)");
+
+  // negation
+  assert((-v == Tuple::vector(-1.0f, -2.0f, -3.0f)) &&
+         "-v should be equal to (-1, -2, -3)");
 }
 
 int main(int argc, char *argv[])

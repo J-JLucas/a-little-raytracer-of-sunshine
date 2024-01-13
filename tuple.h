@@ -32,4 +32,5 @@ public:
   bool operator!=(const Tuple &rhs) const { return !(*this == rhs); }
   Tuple operator+(const Tuple &rhs) const;
   Tuple operator-(const Tuple &rhs) const;
+  Tuple operator-() const;
 };

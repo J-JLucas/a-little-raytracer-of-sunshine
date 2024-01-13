@@ -33,3 +33,5 @@ Tuple Tuple::operator-(const Tuple &rhs) const
 {
   return Tuple(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
 }
+
+Tuple Tuple::operator-() const { return Tuple(-x, -y, -z, -w); }
