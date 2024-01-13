@@ -1,7 +1,6 @@
-#include "tuple.h"
+#include "../src/tuple.h"
 #include <cassert>
 #include <cmath>
-#include <iomanip>
 #include <iostream>
 
 void testTuples()
