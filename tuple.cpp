@@ -54,3 +54,17 @@ float Tuple::magnitude(Tuple v)
 }
 
 Tuple Tuple::normalize(Tuple v) { return v / magnitude(v); }
+
+float Tuple::dot(Tuple v, Tuple w)
+{
+  assert((v.w == 0 && w.w == 0) && "Dot Product requires two vector operands");
+  return (v.x * w.x) + (v.y * w.y) + (v.z * w.z);
+}
+
+Tuple Tuple::cross(Tuple v, Tuple w)
+{
+  assert((v.w == 0 && w.w == 0) &&
+         "Cross Product requires two vector operands");
+  return vector((v.y * w.z) - (v.z * w.y), (v.z * w.x) - (v.x * w.z),
+                (v.x * w.y) - (v.y * w.x));
+}

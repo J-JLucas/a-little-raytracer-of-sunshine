@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <iostream>
 
-void testTuple()
+void testTuples()
 {
   Tuple v = Tuple::vector(1.0f, 2.0f, 3.0f);
   Tuple w = Tuple::vector(1.0000001f, 2.0f, 3.0f);
@@ -75,12 +75,21 @@ void testTuple()
          "normalize(1, 2, 3) should be (0.26726, 0.53452, 0.80178)");
   assert(Tuple::floatEqual(Tuple::magnitude(Tuple::normalize(v)), 1.0f) &&
          "magnitude of normalize(1, 2, 3) should be 1.0f");
+
+  // dot product
+  assert((Tuple::dot(v, g) == 28.0f) && "dot(v, g) should be 28");
+
+  // cross product
+  assert((Tuple::cross(v, g) == Tuple::vector(-7.0f, 14.0f, -7.0f)) &&
+         "cross(v, g) should be (-7.0f, 14.0f, -7.0f)");
+  assert((Tuple::cross(g, v) == Tuple::vector(7.0f, -14.0f, 7.0f)) &&
+         "cross(g, v) should be (7.0f, -14.0f, 7.0f)");
 }
 
 int main(int argc, char *argv[])
 {
   try {
-    testTuple();
+    testTuples();
     std::cout << "All tests passed!\n";
   }
   catch (const char *msg) {

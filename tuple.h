@@ -37,6 +37,6 @@ public:
   Tuple operator/(float scalar) const;
   static float magnitude(Tuple v);
   static Tuple normalize(Tuple v);
-  // dot product
-  // cross product
+  static float dot(Tuple v, Tuple w);
+  static Tuple cross(Tuple v, Tuple w);
 };
