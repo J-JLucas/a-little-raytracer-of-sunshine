@@ -33,4 +33,10 @@ public:
   Tuple operator+(const Tuple &rhs) const;
   Tuple operator-(const Tuple &rhs) const;
   Tuple operator-() const;
+  Tuple operator*(float scalar) const;
+  Tuple operator/(float scalar) const;
+  static float magnitude(Tuple v);
+  static Tuple normalize(Tuple v);
+  // dot product
+  // cross product
 };

@@ -1,5 +1,9 @@
 #include "tuple.h"
+#include <cassert>
+#include <cmath>
 #include <cstdlib>
+
+using namespace std;
 
 bool Tuple::floatEqual(float a, float b) const
 {
@@ -35,3 +39,21 @@ Tuple Tuple::operator-(const Tuple &rhs) const
 }
 
 Tuple Tuple::operator-() const { return Tuple(-x, -y, -z, -w); }
+
+Tuple Tuple::operator*(float scalar) const
+{
+  return Tuple(x * scalar, y * scalar, z * scalar, w * scalar);
+}
+
+Tuple Tuple::operator/(float scalar) const
+{
+  assert(scalar != 0.0f);
+  return Tuple(x / scalar, y / scalar, z / scalar, w / scalar);
+}
+
+float Tuple::magnitude(Tuple v)
+{
+  return sqrt(pow(v.x, 2.0f) + pow(v.y, 2.0f) + pow(v.z, 2.0f));
+}
+
+Tuple Tuple::normalize(Tuple v) { return v / magnitude(v); }

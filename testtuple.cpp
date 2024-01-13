@@ -1,6 +1,8 @@
 #include "tuple.h"
 #include <cassert>
+#include <cmath>
 #include <iostream>
+#include <string>
 
 void testTuple()
 {
@@ -42,6 +44,54 @@ void testTuple()
   // negation
   assert((-v == Tuple::vector(-1.0f, -2.0f, -3.0f)) &&
          "-v should be equal to (-1, -2, -3)");
+
+  // scalar multiplication
+  assert((v * 3.5f == Tuple::vector(3.5f, 7.0f, 10.5f)) &&
+         "v * 3.5 should be equal to (3.5, 7, 10.5)");
+  assert((v * 0.5f == Tuple::vector(0.5f, 1.0f, 1.5f)) &&
+         "v * 0.5 should be equal to (0.5, 1, 1.5)");
+
+  // scalar division
+  assert((v / 2.0f == Tuple::vector(0.5f, 1.0f, 1.5f)) &&
+         "v / 2 should be equal to (0.5, 1, 1.5)");
+
+  // magnitude
+  assert((Tuple::magnitude(Tuple::vector(1.0f, 0.0f, 0.0f)) == 1.0f) &&
+         "magnitude of (1, 0, 0) should be 1");
+  assert((Tuple::magnitude(Tuple::vector(0.0f, 1.0f, 0.0f)) == 1.0f) &&
+         "magnitude of (0, 1, 0) should be 1");
+  assert((Tuple::magnitude(Tuple::vector(0.0f, 0.0f, 1.0f)) == 1.0f) &&
+         "magnitude of (0, 0, 1) should be 1");
+  assert((Tuple::magnitude(v) == std::sqrt(14.0f)) &&
+         "magnitude of (1, 2, 3) should be sqrt(14)");
+  assert((Tuple::magnitude(-v) == std::sqrt(14.0f)) &&
+         "magnitude of (-1, -2, -3) should be sqrt(14)");
+
+  // normalization
+  assert((Tuple::normalize(Tuple::vector(4.0f, 0.0f, 0.0f)) ==
+          Tuple::vector(1.0f, 0.0f, 0.0f)) &&
+         "normalize(4, 0, 0) should be (1, 0, 0)");
+  assert((Tuple::normalize(v) == Tuple::vector(0.26726f, 0.53452f, 0.80178f)) &&
+         "normalize(1, 2, 3) should be (0.26726, 0.53452, 0.80178)");
+
+  //  float test = Tuple::magnitude(Tuple::normalize(v));
+  //  std::cout << "normalize(1, 2, 3) magnitude is " << test << '\n';
+  //  assert((test == 1.0f) && "magnitude of normalize(1, 2, 3) = " +
+  //  std::to_string(test) + " should be 1");
+
+  try {
+    float test = Tuple::magnitude(Tuple::normalize(v));
+    std::cout << "normalize(1, 2, 3) magnitude is " << test << '\n';
+
+    if (test != 1.0f) {
+      throw std::runtime_error(
+          "Assertion failed: magnitude of normalize(1, 2, 3) = " +
+          std::to_string(test) + " is not 1.0");
+    }
+  }
+  catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+  }
 }
 
 int main(int argc, char *argv[])
