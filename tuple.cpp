@@ -25,12 +25,11 @@ bool Tuple::operator==(const Tuple &rhs) const
 Tuple Tuple::operator+(const Tuple &rhs) const
 // point + point undefined
 {
-  // vector + point
-  if (w || rhs.w) {
-    return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, true);
-  }
-  // vector + vector
-  else {
-    return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, false);
-  }
+  return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
+}
+
+Tuple Tuple::operator-(const Tuple &rhs) const
+// vector - point undefined
+{
+  return Tuple(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
 }
