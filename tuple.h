@@ -18,7 +18,6 @@ public:
 
 private:
   Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
-  bool floatEqual(float a, float b) const;
 
 public:
   static Tuple vector(float x, float y, float z)
@@ -28,6 +27,7 @@ public:
   static Tuple point(float x, float y, float z) { return Tuple(x, y, z, 1.0f); }
 
   // operations are const because don't want to modify operands
+  static bool floatEqual(float a, float b);
   bool operator==(const Tuple &rhs) const;
   bool operator!=(const Tuple &rhs) const { return !(*this == rhs); }
   Tuple operator+(const Tuple &rhs) const;

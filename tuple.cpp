@@ -5,10 +5,7 @@
 
 using namespace std;
 
-bool Tuple::floatEqual(float a, float b) const
-{
-  return std::abs((a - b)) < EPSILON;
-}
+bool Tuple::floatEqual(float a, float b) { return std::abs((a - b)) < EPSILON; }
 
 bool Tuple::operator==(const Tuple &rhs) const
 {

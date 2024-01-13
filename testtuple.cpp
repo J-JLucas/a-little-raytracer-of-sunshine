@@ -1,6 +1,7 @@
 #include "tuple.h"
 #include <cassert>
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 
 void testTuple()
@@ -72,16 +73,8 @@ void testTuple()
          "normalize(4, 0, 0) should be (1, 0, 0)");
   assert((Tuple::normalize(v) == Tuple::vector(0.26726f, 0.53452f, 0.80178f)) &&
          "normalize(1, 2, 3) should be (0.26726, 0.53452, 0.80178)");
-
-  float test = Tuple::magnitude(Tuple::normalize(v));
-  std::cout << "normalize(1, 2, 3) magnitude is " << test << '\n';
-  // print type of test
-  std::cout << "type of test is " << typeid(test).name() << '\n';
-  std::cout << "type of test is " << typeid(1.0f).name() << '\n';
-  std::cout << (test == 1.0f) << '\n';
-  std::cout << (1.0f == 1.0f) << '\n';
-  std::cout << (1.00 == 1.0f) << '\n';
-  assert((test == 1.0f) && "magnitude of normalize(1, 2, 3) should be 1.0f");
+  assert(Tuple::floatEqual(Tuple::magnitude(Tuple::normalize(v)), 1.0f) &&
+         "magnitude of normalize(1, 2, 3) should be 1.0f");
 }
 
 int main(int argc, char *argv[])
