@@ -24,5 +24,10 @@ bool Tuple::operator==(const Tuple &rhs) const
 
 Tuple Tuple::operator+(const Tuple &rhs) const
 {
-  return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, w);
+  if (w || rhs.w) {
+    return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, true);
+  } // vector + point
+  else {
+    return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, false);
+  } // point + point
 }

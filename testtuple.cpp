@@ -26,6 +26,8 @@ void testTuple()
 
   assert((v + g == Tuple::vector(7.0f, 7.0f, 7.0f)) &&
          "v + g should be equal to (7, 7, 7)");
+  assert((v + p == Tuple::point(2.0f, 4.0f, 6.0f)) &&
+         "v + p should be equal to (2, 4, 6)");
 }
 
 int main(int argc, char *argv[])

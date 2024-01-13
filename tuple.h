@@ -21,7 +21,10 @@ private:
   bool floatEqual(float a, float b) const;
 
 public:
-  static Tuple vector(float x, float y, float z) { return Tuple(x, y, z); }
+  static Tuple vector(float x, float y, float z)
+  {
+    return Tuple(x, y, z, false);
+  }
   static Tuple point(float x, float y, float z) { return Tuple(x, y, z, true); }
 
   // operations are const because don't want to modify operands
