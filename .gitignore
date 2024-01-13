@@ -1,2 +1,7 @@
-a.out
-runTests
+# How to ignore extensionless files in git
+# 1. ignore everything
+*
+# 2. unignore files including '.' in the name
+!*.*
+# 3. unignore directories
+!*/
