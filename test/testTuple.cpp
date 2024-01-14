@@ -1,9 +1,8 @@
-#include "../src/tuple.h"
+#include "../src/Tuple.h"
 #include <cassert>
 #include <cmath>
-#include <iostream>
 
-void testTuples()
+void testTuple()
 {
   Tuple v = Tuple::Vector(1.0f, 2.0f, 3.0f);
   Tuple w = Tuple::Vector(1.0000001f, 2.0f, 3.0f);
@@ -83,16 +82,8 @@ void testTuples()
          "cross(v, g) should be (-7.0f, 14.0f, -7.0f)");
   assert((Tuple::cross(g, v) == Tuple::Vector(7.0f, -14.0f, 7.0f)) &&
          "cross(g, v) should be (7.0f, -14.0f, 7.0f)");
-}
 
-int main(int argc, char *argv[])
-{
-  try {
-    testTuples();
-    std::cout << "All tests passed!\n";
-  }
-  catch (const char *msg) {
-    std::cerr << "Assertion failed: " << msg << '\n';
-  }
-  return 0;
+  // colour product
+  assert((Tuple::colourProduct(v, g) == Tuple::Vector(6.0f, 10.0f, 12.0f)) &&
+         "colourProduct(v, g) should be (6.0f, 10.0f, 12.0f)");
 }

@@ -1,4 +1,4 @@
-#include "../src/tuple.h"
+#include "../src/Tuple.h"
 #include <iostream>
 
 struct Projectile {

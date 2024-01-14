@@ -1,7 +1,5 @@
+buildTests: src/Tuple.cpp src/Canvas.cpp test/testTuple.cpp test/testCanvas.cpp test/testSuite.cpp
+	clang++	-std=c++17 -Wall -o runTests src/Tuple.cpp src/Canvas.cpp test/testTuple.cpp test/testCanvas.cpp test/testSuite.cpp
 
-
-buildTests: src/tuple.cpp  test/testtuple.cpp 
-	clang++	-std=c++17 -Wall -o runTests src/tuple.cpp test/testtuple.cpp
-
-buildProjectile: test/projectile.cpp src/tuple.cpp
-	clang++ -std=c++17 -Wall -o Projectile test/projectile.cpp src/tuple.cpp
+buildProjectile: test/projectile.cpp src/Tuple.cpp
+	clang++ -std=c++17 -Wall -o Projectile test/projectile.cpp src/Tuple.cpp

@@ -1,4 +1,4 @@
-#include "tuple.h"
+#include "Tuple.h"
 #include <cassert>
 #include <cmath>
 #include <cstdlib>
@@ -67,4 +67,10 @@ Tuple Tuple::cross(Tuple v, Tuple w)
          "Cross Product requires two vector operands");
   return Vector((v.y * w.z) - (v.z * w.y), (v.z * w.x) - (v.x * w.z),
                 (v.x * w.y) - (v.y * w.x));
+}
+
+Tuple Tuple::colourProduct(Tuple v, Tuple w)
+{
+  // Hadamard product of two colour tuples
+  return Colour(v.x * w.x, v.y * w.y, v.z * w.z);
 }
