@@ -7,6 +7,7 @@ void testTuple()
   Tuple v = Tuple::Vector(1.0f, 2.0f, 3.0f);
   Tuple w = Tuple::Vector(1.0000001f, 2.0f, 3.0f);
   Tuple g = Tuple::Vector(6.0f, 5.0f, 4.0f);
+  Tuple c = Tuple::Colour(-0.5f, 0.4, 1.7);
 
   Tuple p = Tuple::Point(1.0f, 2.0f, 3.0f);
   Tuple q = Tuple::Point(1.0000001f, 2.0f, 3.0f);
@@ -82,6 +83,10 @@ void testTuple()
          "cross(v, g) should be (-7.0f, 14.0f, -7.0f)");
   assert((Tuple::cross(g, v) == Tuple::Vector(7.0f, -14.0f, 7.0f)) &&
          "cross(g, v) should be (7.0f, -14.0f, 7.0f)");
+
+  // colour
+  assert(c == Tuple::Colour(-0.5f, 0.4f, 1.7f) &&
+         "c should be equal to (-0.5f, 0.4f, 1.7f)");
 
   // colour product
   assert((Tuple::colourProduct(v, g) == Tuple::Vector(6.0f, 10.0f, 12.0f)) &&
