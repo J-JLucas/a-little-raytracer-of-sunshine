@@ -5,3 +5,5 @@
 !*.*
 # 3. unignore directories
 !*/
+
+*.ppm

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <string>
 class Tuple {
 
 private:
@@ -44,4 +45,7 @@ public:
   static float dot(Tuple v, Tuple w);
   static Tuple cross(Tuple v, Tuple w);
   static Tuple colourProduct(Tuple v, Tuple w);
+  float getRed() { return x; }
+  float getBlue() { return y; }
+  float getGreen() { return z; }
 };
