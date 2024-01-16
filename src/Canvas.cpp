@@ -1,6 +1,7 @@
 #include "Canvas.h"
 #include "Tuple.h"
 #include <cassert>
+#include <fstream>
 
 Canvas::Canvas(int width, int height)
     : pixelArray(height, std::vector<Tuple>(width, Tuple::Colour(0, 0, 0)))
@@ -23,4 +24,12 @@ void Canvas::writePixel(int row, int column, class Tuple colour)
   pixelArray[row][column] = colour;
 }
 
-void Canvas::exportCanvas(const std::string &filename) const { return; }
+void Canvas::exportCanvas(std::ofstream &outfile)
+{
+  // PPM header
+  outstream << "P3\n"                         // PPM Type ID
+            << width << " " << height << "\n" // width and height
+            << "255" << std::endl;            // max colour value
+
+  outfile << outstream.str();
+}

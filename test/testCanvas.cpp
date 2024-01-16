@@ -2,6 +2,7 @@
 #include "../src/Canvas.h"
 #include "../src/Tuple.h"
 #include <cassert>
+#include <fstream>
 
 void testCanvas()
 {
@@ -25,6 +26,10 @@ void testCanvas()
   // write pixels
   c.writePixel(2, 3, red);
   assert((c.getPixel(2, 3) == red) && "Canvas pixel should be red");
+
+  // export canvas
+  std::ofstream outfile("testCanvas.ppm");
+  c.exportCanvas(outfile);
 
   return;
 }
