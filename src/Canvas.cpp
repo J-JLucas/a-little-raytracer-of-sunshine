@@ -20,9 +20,12 @@ Tuple Canvas::getPixel(int row, int column) const
 
 void Canvas::writePixel(int row, int column, class Tuple colour)
 {
-  // no out of bounds writes
-  assert(row >= 0 && row < height);
-  assert(column >= 0 && column < width);
+  // ignore out of bounds writes
+  if (row < 0 || row > height || column < 0 || column > width) {
+    std::cout << "Canvas::writePixel: out of bounds write at (" << row << ", "
+              << column << ")" << std::endl;
+    return;
+  }
   pixelArray[row][column] = colour;
 }
 
