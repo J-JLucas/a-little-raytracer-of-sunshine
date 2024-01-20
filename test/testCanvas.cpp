@@ -3,6 +3,7 @@
 #include "../src/Tuple.h"
 #include <cassert>
 #include <fstream>
+#include <iostream>
 
 void testCanvas()
 {
@@ -19,21 +20,20 @@ void testCanvas()
   // assert that all pixels are black in fresh canvas
   for (int i = 0; i < height; i++) {
     for (int j = 0; j < width; j++) {
-      assert(c.getPixel(i, j) == black && "Canvas pixel should be black");
+      assert(c.getPixel(j, i) == black && "Canvas pixel should be black");
     }
   }
 
   // write pixels
   for (int i = 0; i < height; i++) {
     c.writePixel(width / 2, i, red);
+    assert(c.getPixel(width / 2, i) == red && "Canvas pixel should be red");
   }
 
   for (int j = 0; j < width; j++) {
     c.writePixel(j, height / 2, red);
+    assert(c.getPixel(j, height / 2) == red && "Canvas pixel should be red");
   }
-
-  // c.writePixel(2, 3, red);
-  // assert((c.getPixel(2, 3) == red) && "Canvas pixel should be red");
 
   // export canvas
   std::ofstream outfile("testCanvas.ppm");
