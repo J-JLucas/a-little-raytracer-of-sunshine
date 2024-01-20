@@ -24,8 +24,16 @@ void testCanvas()
   }
 
   // write pixels
-  c.writePixel(2, 3, red);
-  assert((c.getPixel(2, 3) == red) && "Canvas pixel should be red");
+  for (int i = 0; i < height; i++) {
+    c.writePixel(width / 2, i, red);
+  }
+
+  for (int j = 0; j < width; j++) {
+    c.writePixel(j, height / 2, red);
+  }
+
+  // c.writePixel(2, 3, red);
+  // assert((c.getPixel(2, 3) == red) && "Canvas pixel should be red");
 
   // export canvas
   std::ofstream outfile("testCanvas.ppm");

@@ -25,7 +25,7 @@ void tick(Environment &env, Projectile &proj, Canvas &c)
 
   // draw projectile on canvas
   c.writePixel(std::round(proj.position.x),
-               std::round(height - proj.position.y), red);
+               height - std::round(proj.position.y), red);
 
   return;
 }
@@ -45,8 +45,11 @@ int main(int argc, char *argv[])
   Projectile p = {
       Tuple::Point(0, 1, 0),
       Tuple::normalize(Tuple::Vector(std::stof(argv[1]), std::stof(argv[2]),
-                                     std::stof(argv[3])) *
-                       11.25f)};
+                                     std::stof(argv[3]))) *
+          11.25f};
+  // Tuple::Vector(std::stof(argv[1]), std::stof(argv[2]),
+  //               std::stof(argv[3])) *
+  //     11.25f};
 
   // gravity -0.1 unit/tick, and wind is -0.01 unit/tick
   Environment e = {Tuple::Vector(0, -0.1, 0), Tuple::Vector(-0.01, 0, 0)};

@@ -13,20 +13,17 @@ Canvas::Canvas(int width, int height)
   this->height = height;
 }
 
-Tuple Canvas::getPixel(int row, int column) const
-{
-  return pixelArray[row][column];
-}
+Tuple Canvas::getPixel(int x, int y) const { return pixelArray[y][x]; }
 
-void Canvas::writePixel(int row, int column, class Tuple colour)
+void Canvas::writePixel(int x, int y, class Tuple colour)
 {
   // ignore out of bounds writes
-  if (row < 0 || row > height || column < 0 || column > width) {
-    std::cout << "Canvas::writePixel: out of bounds write at (" << row << ", "
-              << column << ")" << std::endl;
+  if (y < 0 || y >= height || x < 0 || x >= width) {
+    std::cout << "ERROR: Out of bounds writePixel attempt at (" << x << ", "
+              << y << ")" << std::endl;
     return;
   }
-  pixelArray[row][column] = colour;
+  pixelArray[y][x] = colour;
 }
 
 void Canvas::exportColours(Tuple pixel)
