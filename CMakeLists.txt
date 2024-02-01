@@ -6,3 +6,7 @@ add_executable(runTests test/testSuite.cpp src/Tuple.cpp src/Matrix.cpp src/Canv
 
 # projectile "mini application" target
 add_executable(projectile test/projectile.cpp src/Tuple.cpp src/Canvas.cpp)  # add executable target
+
+# draw spiral target
+add_executable(drawSpiral test/drawSpiral.cpp src/Tuple.cpp src/Canvas.cpp)  # add executable target
+
