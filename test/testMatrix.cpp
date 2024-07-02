@@ -20,11 +20,13 @@ i \ j
                16.5});
   assert((A(0, 0) == 1.0f) && "A[0,0] should be 1");
   assert((A(0, 3) == 4.0f) && "A[0,3] should be 4");
-  assert((A(1, 0) = 5.5f) && "A[1,0] should be 5.5");
-  assert((A(1, 2) = 7.5f) && "A[1,2] should be 7.5");
-  assert((A(2, 2) = 11.0f) && "A[2,2] should be 11");
-  assert((A(3, 0) = 13.5f) && "A[3,0] should be 13.5");
-  assert((A(3, 2) = 15.5f) && "A[3,2] should be 15.5");
+  assert((A(1, 0) == 5.5f) && "A[1,0] should be 5.5");
+  assert((A(1, 2) == 7.5f) && "A[1,2] should be 7.5");
+  assert((A(2, 2) == 11.0f) && "A[2,2] should be 11");
+  assert((A(3, 0) == 13.5f) && "A[3,0] should be 13.5");
+  assert((A(3, 2) == 15.5f) && "A[3,2] should be 15.5");
+
+  A.print();
 
   return;
 }
