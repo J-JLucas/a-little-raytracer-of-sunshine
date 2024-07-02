@@ -27,5 +27,9 @@ public:
   ~Matrix() { delete[] data; }
 
   float &operator()(int row, int col);
+  bool operator==(const Matrix &other) const;
+  bool operator!=(const Matrix &other) const { return !(*this == other); }
+
+  int getSize() const { return n; }
   void print() const;
 };
