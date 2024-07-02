@@ -27,4 +27,5 @@ public:
   ~Matrix() { delete[] data; }
 
   float &operator()(int row, int col);
+  void print() const;
 };
