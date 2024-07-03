@@ -12,6 +12,7 @@ private:
   static constexpr float EPSILON = 0.00001f;
 
 public:
+  float data[4]{};
   float x{};
   float y{};
   float z{};

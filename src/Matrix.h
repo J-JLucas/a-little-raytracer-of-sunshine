@@ -4,6 +4,7 @@
  */
 #pragma once
 
+#include "Tuple.h"
 #include <cassert>
 #include <initializer_list>
 
@@ -29,7 +30,8 @@ public:
   float &operator()(int row, int col);
   bool operator==(const Matrix &other) const;
   bool operator!=(const Matrix &other) const { return !(*this == other); }
+  Matrix operator*(const Matrix &other) const;
+  class Tuple operator*(const class Tuple &t) const;
 
-  int getSize() const { return n; }
   void print() const;
 };

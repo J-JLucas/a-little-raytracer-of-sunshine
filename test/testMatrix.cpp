@@ -1,5 +1,6 @@
 #include "testMatrix.h"
 #include "../src/Matrix.h"
+#include "../src/Tuple.h"
 
 void testMatrix()
 {
@@ -36,8 +37,21 @@ i \ j
   Matrix E(4, {1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2});
   assert((D == E) && "D should be equal to E");
 
-  Matrix F(4, {2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1});
+  Matrix F(4, {-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8});
   assert((D != F) && "D should not be equal to F");
+
+  Matrix G(
+      4, {20, 22, 50, 48, 44, 54, 114, 108, 40, 58, 110, 102, 16, 26, 46, 42});
+
+  // matrix multiplication
+  assert((G == (D * F)) && "D * F should be equal to G");
+
+  // matrix * tuple
+  Matrix H(4, {1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1});
+  Tuple t1 = Tuple::Vector(1, 2, 3);
+  Tuple t2 = Tuple::Vector(18, 24, 33);
+
+  assert((H * t1 == t2) && "H * T should be equal to T2");
 
   return;
 }
