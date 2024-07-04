@@ -13,8 +13,8 @@ void testTuple()
   Tuple q = Tuple::Point(1.0000001f, 2.0f, 3.0f);
   Tuple r = Tuple::Point(6.0f, 5.0f, 4.0f);
 
-  assert(v.w == 0 && "v should be a vector");
-  assert(p.w == 1 && "p should be a point");
+  assert(v.data[3] == 0 && "v should be a vector");
+  assert(p.data[3] == 1 && "p should be a point");
 
   // equality
   assert((v == v) && "v should be equal to v");

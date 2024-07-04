@@ -2,6 +2,7 @@
 #include <cassert>
 #include <cmath>
 #include <cstdlib>
+#include <iostream>
 
 using namespace std;
 
@@ -9,16 +10,10 @@ bool Tuple::floatEqual(float a, float b) { return std::abs((a - b)) < EPSILON; }
 
 bool Tuple::operator==(const Tuple &rhs) const
 {
-  if (w != rhs.w) // points and vectors are not equal
-    return false;
-  if (!floatEqual(x, rhs.x)) {
-    return false;
-  }
-  if (!floatEqual(y, rhs.y)) {
-    return false;
-  }
-  if (!floatEqual(z, rhs.z)) {
-    return false;
+  for (int i = 0; i < 4; i++) {
+    if (!floatEqual(data[i], rhs.data[i])) {
+      return false;
+    }
   }
   return true;
 }
@@ -26,51 +21,69 @@ bool Tuple::operator==(const Tuple &rhs) const
 Tuple Tuple::operator+(const Tuple &rhs) const
 // point + point undefined
 {
-  return Tuple(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
+  return Tuple(data[0] + rhs.data[0], data[1] + rhs.data[1],
+               data[2] + rhs.data[2], data[3] + rhs.data[3]);
 }
 
 Tuple Tuple::operator-(const Tuple &rhs) const
 // vector - point undefined
 {
-  return Tuple(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
+  return Tuple(data[0] - rhs.data[0], data[1] - rhs.data[1],
+               data[2] - rhs.data[2], data[3] - rhs.data[3]);
 }
 
-Tuple Tuple::operator-() const { return Tuple(-x, -y, -z, -w); }
+Tuple Tuple::operator-() const
+{
+  return Tuple(-data[0], -data[1], -data[2], -data[3]);
+}
 
 Tuple Tuple::operator*(float scalar) const
 {
-  return Tuple(x * scalar, y * scalar, z * scalar, w * scalar);
+  return Tuple(data[0] * scalar, data[1] * scalar, data[2] * scalar,
+               data[3] * scalar);
 }
 
 Tuple Tuple::operator/(float scalar) const
 {
   assert(scalar != 0.0f);
-  return Tuple(x / scalar, y / scalar, z / scalar, w / scalar);
+  return Tuple(data[0] / scalar, data[1] / scalar, data[2] / scalar,
+               data[3] / scalar);
 }
 
 float Tuple::magnitude(Tuple v)
 {
-  return sqrt(pow(v.x, 2.0f) + pow(v.y, 2.0f) + pow(v.z, 2.0f));
+  return sqrt(pow(v.data[0], 2.0f) + pow(v.data[1], 2.0f) +
+              pow(v.data[2], 2.0f));
 }
 
 Tuple Tuple::normalize(Tuple v) { return v / magnitude(v); }
 
 float Tuple::dot(Tuple v, Tuple w)
 {
-  assert((v.w == 0 && w.w == 0) && "Dot Product requires two vector operands");
-  return (v.x * w.x) + (v.y * w.y) + (v.z * w.z);
+  assert((v.data[3] == 0 && w.data[3] == 0) &&
+         "Dot Product requires two vector operands");
+  return (v.data[0] * w.data[0]) + (v.data[1] * w.data[1]) +
+         (v.data[2] * w.data[2]);
 }
 
 Tuple Tuple::cross(Tuple v, Tuple w)
 {
-  assert((v.w == 0 && w.w == 0) &&
+  assert((v.data[3] == 0 && w.data[3] == 0) &&
          "Cross Product requires two vector operands");
-  return Vector((v.y * w.z) - (v.z * w.y), (v.z * w.x) - (v.x * w.z),
-                (v.x * w.y) - (v.y * w.x));
+  return Vector((v.data[1] * w.data[2]) - (v.data[2] * w.data[1]),
+                (v.data[2] * w.data[0]) - (v.data[0] * w.data[2]),
+                (v.data[0] * w.data[1]) - (v.data[1] * w.data[0]));
 }
 
 Tuple Tuple::colourProduct(Tuple v, Tuple w)
 {
   // Hadamard product of two colour tuples
-  return Colour(v.x * w.x, v.y * w.y, v.z * w.z);
+  return Colour(v.data[0] * w.data[0], v.data[1] * w.data[1],
+                v.data[2] * w.data[2]);
+}
+
+void Tuple::printTuple()
+{
+  std::cout << "(" << data[0] << ", " << data[1] << ", " << data[2] << ", "
+            << data[3] << ")" << std::endl;
 }

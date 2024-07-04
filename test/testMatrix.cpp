@@ -48,10 +48,10 @@ i \ j
 
   // matrix * tuple
   Matrix H(4, {1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1});
-  Tuple t1 = Tuple::Vector(1, 2, 3);
-  Tuple t2 = Tuple::Vector(18, 24, 33);
-
-  assert((H * t1 == t2) && "H * T should be equal to T2");
+  Tuple t1 = Tuple::Point(1, 2, 3);
+  Tuple t2 = Tuple::Point(18, 24, 33);
+  Tuple t3 = H * t1;
+  assert((t3 == t2) && "H * T should be equal to T2");
 
   return;
 }

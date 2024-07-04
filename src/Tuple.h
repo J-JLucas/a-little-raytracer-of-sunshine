@@ -6,6 +6,7 @@
 #pragma once
 
 #include <string>
+
 class Tuple {
 
 private:
@@ -13,13 +14,9 @@ private:
 
 public:
   float data[4]{};
-  float x{};
-  float y{};
-  float z{};
-  float w{};
 
 private:
-  Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+  Tuple(float x, float y, float z, float w) : data{x, y, z, w} {}
 
 public:
   static Tuple Point(float x, float y, float z) { return Tuple(x, y, z, 1.0f); }
@@ -46,7 +43,12 @@ public:
   static float dot(Tuple v, Tuple w);
   static Tuple cross(Tuple v, Tuple w);
   static Tuple colourProduct(Tuple v, Tuple w);
-  float getRed() { return x; }
-  float getBlue() { return y; }
-  float getGreen() { return z; }
+  float getX() { return data[0]; }
+  float getY() { return data[1]; }
+  float getZ() { return data[2]; }
+  float getRed() { return data[0]; }
+  float getBlue() { return data[1]; }
+  float getGreen() { return data[2]; }
+
+  void printTuple();
 };

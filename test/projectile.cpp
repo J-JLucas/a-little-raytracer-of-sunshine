@@ -24,8 +24,8 @@ void tick(Environment &env, Projectile &proj, Canvas &c)
   proj.velocity = proj.velocity + env.gravity + env.wind;
 
   // draw projectile on canvas
-  c.writePixel(std::round(proj.position.x),
-               height - std::round(proj.position.y), red);
+  c.writePixel(std::round(proj.position.getX()),
+               height - std::round(proj.position.getY()), red);
 
   return;
 }
@@ -51,11 +51,11 @@ int main(int argc, char *argv[])
   // gravity -0.1 unit/tick, and wind is -0.01 unit/tick
   Environment e = {Tuple::Vector(0, -0.1, 0), Tuple::Vector(-0.01, 0, 0)};
 
-  while (p.position.y > 0) {
+  while (p.position.getY() > 0) {
     tick(e, p, c);
-    std::cout << "Position: (" << std::round(p.position.x) << ", "
-              << std::round(p.position.y) << ", " << std::round(p.position.z)
-              << ")" << std::endl;
+    std::cout << "Position: (" << std::round(p.position.getX()) << ", "
+              << std::round(p.position.getY()) << ", "
+              << std::round(p.position.getZ()) << ")" << std::endl;
   }
 
   // export canvas

@@ -43,6 +43,7 @@ Tuple Matrix::operator*(const Tuple &t) const
   Tuple result = Tuple::Vector(0, 0, 0);
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
+      result.data[i] += data[i * n + j] * t.data[j];
     }
   }
   return result;
