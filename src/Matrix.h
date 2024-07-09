@@ -47,4 +47,5 @@ public:
   static Matrix submatrix(const Matrix &m, int row, int col);
   static int minor(const Matrix &m, int row, int col);
   static int cofactor(const Matrix &m, int row, int col);
+  static Matrix translation(float x, float y, float z);
 };

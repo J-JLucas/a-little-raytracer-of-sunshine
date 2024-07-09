@@ -2,7 +2,7 @@
 #include "../src/Matrix.h"
 #include "../src/Tuple.h"
 
-void testMatrix()
+void testMatrix1()
 {
   /* Matrix A
 i \ j
@@ -184,6 +184,28 @@ i \ j
   Matrix AE = AC * AD;
   assert((AE * AD.inverse() == AC) &&
          "AE * AD.inverse() should be equal to AC");
+
+  return;
+}
+
+void testMatrix2()
+{
+  // translation
+  Matrix A = Matrix::translation(5, -3, 2);
+  Tuple p = Tuple::Point(-3, 4, 5);
+  Tuple r1 = A * p;
+  assert((r1 == Tuple::Point(2, 1, 7)) && "t2 should be equal to Point(2,1,7)");
+
+  Matrix A_i = A.inverse();
+  Tuple r2 = A_i * p;
+  assert((r2 == Tuple::Point(-8, 7, 3)) &&
+         "t2 should be equal to Point(-8,7,3)");
+
+  Tuple v = Tuple::Vector(-3, 4, 5);
+  Tuple r3 = A * v;
+  assert((r3 == v) && "t3 should be equal to v");
+
+  // scaling
 
   return;
 }

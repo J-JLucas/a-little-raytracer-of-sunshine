@@ -1,3 +1,4 @@
 #pragma once
 
-void testMatrix();
+void testMatrix1();
+void testMatrix2();

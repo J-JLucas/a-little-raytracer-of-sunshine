@@ -8,7 +8,8 @@ int main(int argc, char *argv[])
   testTuple();
   std::cout << "All Tuple tests passed!" << std::endl;
 
-  testMatrix();
+  testMatrix1();
+  testMatrix2();
   std::cout << "All Matrix tests passed!" << std::endl;
 
   testCanvas();

@@ -135,3 +135,19 @@ int Matrix::cofactor(const Matrix &m, int row, int col)
 {
   return (row + col) % 2 == 0 ? minor(m, row, col) : -minor(m, row, col);
 }
+
+Matrix Matrix::translation(float x, float y, float z)
+{
+
+  Matrix M(4);
+
+  M(0, 0) = 1;
+  M(1, 1) = 1;
+  M(2, 2) = 1;
+  M(3, 3) = 1;
+  M(0, 3) = x;
+  M(1, 3) = y;
+  M(2, 3) = z;
+
+  return M;
+}
