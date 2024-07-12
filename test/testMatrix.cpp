@@ -206,6 +206,28 @@ void testMatrix2()
   assert((r3 == v) && "t3 should be equal to v");
 
   // scaling
+  Matrix B = Matrix::scaling(2, 3, 4);
+  Tuple p1 = Tuple::Point(-4, 6, 8);
+  Tuple r4 = B * p1;
+  assert((r4 == Tuple::Point(-8, 18, 32)) &&
+         "r4 should be equal to Point(-8,18,32)");
+
+  Tuple v1 = Tuple::Vector(-4, 6, 8);
+  Tuple r5 = B * v1;
+  assert((r5 == Tuple::Vector(-8, 18, 32)) &&
+         "r5 should be equal to Vector(-8,18,32)");
+
+  Matrix B_i = B.inverse();
+  Tuple r6 = B_i * v1;
+  assert((r6 == Tuple::Vector(-2, 2, 2)) &&
+         "r6 should be equal to Vector(-2,2,2)");
+
+  // Reflection
+  Matrix C = Matrix::scaling(-1, 1, 1);
+  Tuple p2 = Tuple::Point(2, 3, 4);
+  Tuple r7 = C * p2;
+  assert((r7 == Tuple::Point(-2, 3, 4)) &&
+         "r7 should be equal to Point(-2,3,4)");
 
   return;
 }

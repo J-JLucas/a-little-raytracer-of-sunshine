@@ -151,3 +151,15 @@ Matrix Matrix::translation(float x, float y, float z)
 
   return M;
 }
+
+Matrix Matrix::scaling(float x, float y, float z)
+{
+  Matrix M(4);
+
+  M(0, 0) = x;
+  M(1, 1) = y;
+  M(2, 2) = z;
+  M(3, 3) = 1;
+
+  return M;
+}
