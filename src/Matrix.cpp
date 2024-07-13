@@ -199,3 +199,20 @@ Matrix Matrix::rotation_z(float r)
   M(3, 3) = 1;
   return M;
 }
+
+Matrix Matrix::shearing(float xy, float xz, float yx, float yz, float zx,
+                        float zy)
+{
+  Matrix M(4);
+  M(0, 0) = 1;
+  M(0, 1) = xy;
+  M(0, 2) = xz;
+  M(1, 0) = yx;
+  M(1, 1) = 1;
+  M(1, 2) = yz;
+  M(2, 0) = zx;
+  M(2, 1) = zy;
+  M(2, 2) = 1;
+  M(3, 3) = 1;
+  return M;
+}

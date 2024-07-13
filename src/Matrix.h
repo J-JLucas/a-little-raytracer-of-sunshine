@@ -54,4 +54,6 @@ public:
   static Matrix rotation_x(float r);
   static Matrix rotation_y(float r);
   static Matrix rotation_z(float r);
+  static Matrix shearing(float xy, float xz, float yx, float yz, float zx,
+                         float zy);
 };

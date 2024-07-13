@@ -271,5 +271,49 @@ void testMatrix2()
   assert((r14 == Tuple::Point(-1, 0, 0)) &&
          "r14 should be equal to Point(-1,0,0)");
 
+  // Shearing
+  // x in proportion to y
+  Matrix D = Matrix::shearing(1, 0, 0, 0, 0, 0);
+  Tuple p5 = Tuple::Point(2, 3, 4);
+  Tuple r15 = D * p5;
+
+  assert((r15 == Tuple::Point(5, 3, 4)) &&
+         "r15 should be equal to Point(5,3,4)");
+
+  // x in proportion to z
+  Matrix E = Matrix::shearing(0, 1, 0, 0, 0, 0);
+  Tuple r16 = E * p5;
+
+  assert((r16 == Tuple::Point(6, 3, 4)) &&
+         "r16 should be equal to Point(6,3,4)");
+
+  // y in proportion to x
+  Matrix F = Matrix::shearing(0, 0, 1, 0, 0, 0);
+  Tuple r17 = F * p5;
+
+  assert((r17 == Tuple::Point(2, 5, 4)) &&
+         "r17 should be equal to Point(2,5,4)");
+
+  // y in proportion to z
+  Matrix G = Matrix::shearing(0, 0, 0, 1, 0, 0);
+  Tuple r18 = G * p5;
+
+  assert((r18 == Tuple::Point(2, 7, 4)) &&
+         "r18 should be equal to Point(2,7,4)");
+
+  // z in proportion to x
+  Matrix H = Matrix::shearing(0, 0, 0, 0, 1, 0);
+  Tuple r19 = H * p5;
+
+  assert((r19 == Tuple::Point(2, 3, 6)) &&
+         "r19 should be equal to Point(2,3,6)");
+
+  // z in proportion to y
+  Matrix I = Matrix::shearing(0, 0, 0, 0, 0, 1);
+  Tuple r20 = I * p5;
+
+  assert((r20 == Tuple::Point(2, 3, 7)) &&
+         "r20 should be equal to Point(2,3,7)");
+
   return;
 }
