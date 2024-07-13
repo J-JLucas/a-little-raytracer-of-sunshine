@@ -315,5 +315,30 @@ void testMatrix2()
   assert((r20 == Tuple::Point(2, 3, 7)) &&
          "r20 should be equal to Point(2,3,7)");
 
+  // Chain transformations
+  Tuple p6 = Tuple::Point(1, 0, 1);
+  Matrix J = Matrix::rotation_x(pi / 2);
+  Matrix K = Matrix::scaling(5, 5, 5);
+  Matrix L = Matrix::translation(10, 5, 7);
+
+  Tuple r21 = J * p6;
+  assert((r21 == Tuple::Point(1, -1, 0)) &&
+         "r21 should be equal to Point(1,-1,0)");
+
+  Tuple r22 = K * r21;
+  assert((r22 == Tuple::Point(5, -5, 0)) &&
+         "r22 should be equal to Point(5,-5,0)");
+
+  Tuple r23 = L * r22;
+  assert((r23 == Tuple::Point(15, 0, 7)) &&
+         "r23 should be equal to Point(15,0,7)");
+
+  // Chained transformations must be applied in reverse order
+  Matrix M = L * K * J;
+  Tuple r24 = M * p6;
+
+  assert((r24 == Tuple::Point(15, 0, 7)) &&
+         "r24 should be equal to Point(15,0,7)");
+
   return;
 }
