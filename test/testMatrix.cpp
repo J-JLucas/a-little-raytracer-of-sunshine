@@ -1,7 +1,7 @@
 #include "testMatrix.h"
 #include "../src/Matrix.h"
 #include "../src/Tuple.h"
-
+#include <cmath>
 void testMatrix1()
 {
   /* Matrix A
@@ -228,6 +228,48 @@ void testMatrix2()
   Tuple r7 = C * p2;
   assert((r7 == Tuple::Point(-2, 3, 4)) &&
          "r7 should be equal to Point(-2,3,4)");
+
+  // Rotation
+  // rotate about x-axis
+  Tuple p3 = Tuple::Point(0, 1, 0);
+  Matrix halfquarter_turn_x = Matrix::rotation_x(pi / 4);
+  Matrix quarter_turn_x = Matrix::rotation_x(pi / 2);
+  Tuple r8 = halfquarter_turn_x * p3;
+  Tuple r9 = quarter_turn_x * p3;
+
+  assert((r8 == Tuple::Point(0, sqrt(2) / 2, sqrt(2) / 2)) &&
+         "r8 should be equal to Point(0,sqrt(2)/2,sqrt(2)/2)");
+  assert((r9 == Tuple::Point(0, 0, 1)) && "r9 should be equal to Point(0,0,1)");
+
+  // backward rotation
+  Matrix halfquarter_turn_x_i = halfquarter_turn_x.inverse();
+  Tuple r10 = halfquarter_turn_x_i * p3;
+
+  assert((r10 == Tuple::Point(0, sqrt(2) / 2, -sqrt(2) / 2)) &&
+         "r10 should be equal to Point(0,sqrt(2)/2,-sqrt(2)/2)");
+
+  // rotate about y-axis
+  Tuple p4 = Tuple::Point(0, 0, 1);
+  Matrix halfquarter_turn_y = Matrix::rotation_y(pi / 4);
+  Matrix quarter_turn_y = Matrix::rotation_y(pi / 2);
+  Tuple r11 = halfquarter_turn_y * p4;
+  Tuple r12 = quarter_turn_y * p4;
+
+  assert((r11 == Tuple::Point(sqrt(2) / 2, 0, sqrt(2) / 2)) &&
+         "r11 should be equal to Point(sqrt(2)/2,0,sqrt(2)/2)");
+  assert((r12 == Tuple::Point(1, 0, 0)) &&
+         "r12 should be equal to Point(1,0,0)");
+
+  // rotate about z-axis
+  Matrix halfquarter_turn_z = Matrix::rotation_z(pi / 4);
+  Matrix quarter_turn_z = Matrix::rotation_z(pi / 2);
+  Tuple r13 = halfquarter_turn_z * p3;
+  Tuple r14 = quarter_turn_z * p3;
+
+  assert((r13 == Tuple::Point(-sqrt(2) / 2, sqrt(2) / 2, 0)) &&
+         "r13 should be equal to Point(-sqrt(2)/2,sqrt(2)/2,0)");
+  assert((r14 == Tuple::Point(-1, 0, 0)) &&
+         "r14 should be equal to Point(-1,0,0)");
 
   return;
 }

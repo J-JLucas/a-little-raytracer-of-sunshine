@@ -8,6 +8,8 @@
 #include <cassert>
 #include <initializer_list>
 
+constexpr float pi = 3.14159265358979323846;
+
 class Matrix {
 private:
   int n{}; // dimensions n x n
@@ -38,15 +40,18 @@ public:
   class Tuple operator*(const class Tuple &t) const;
 
   Matrix &transpose();
-  int determinate() const;
+  float determinate() const;
   bool invertible() const { return determinate() != 0; }
   Matrix inverse() const;
 
   void print() const;
 
   static Matrix submatrix(const Matrix &m, int row, int col);
-  static int minor(const Matrix &m, int row, int col);
-  static int cofactor(const Matrix &m, int row, int col);
+  static float minor(const Matrix &m, int row, int col);
+  static float cofactor(const Matrix &m, int row, int col);
   static Matrix translation(float x, float y, float z);
   static Matrix scaling(float x, float y, float z);
+  static Matrix rotation_x(float r);
+  static Matrix rotation_y(float r);
+  static Matrix rotation_z(float r);
 };

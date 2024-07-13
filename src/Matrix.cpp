@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include "Tuple.h"
+#include <cmath>
 #include <iostream>
 
 bool Matrix::floatEqual(float a, float b)
@@ -75,12 +76,12 @@ Matrix &Matrix::transpose()
   return *this;
 }
 
-int Matrix::determinate() const
+float Matrix::determinate() const
 {
   if (n == 2) {
     return data[0] * data[3] - data[1] * data[2];
   }
-  int det = 0;
+  float det = 0;
   for (int i = 0; i < n; i++) {
     det += data[i] * cofactor(*this, 0, i);
   }
@@ -90,7 +91,10 @@ int Matrix::determinate() const
 Matrix Matrix::inverse() const
 {
   Matrix result(n);
-  int det = determinate();
+  float det = determinate();
+  if (floatEqual(det, 0)) {
+    throw std::runtime_error("Matrix is not invertible");
+  }
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       float c = cofactor(*this, i, j);
@@ -126,12 +130,12 @@ Matrix Matrix::submatrix(const Matrix &m, int row, int col)
   return result;
 }
 
-int Matrix::minor(const Matrix &m, int row, int col)
+float Matrix::minor(const Matrix &m, int row, int col)
 {
   return submatrix(m, row, col).determinate();
 }
 
-int Matrix::cofactor(const Matrix &m, int row, int col)
+float Matrix::cofactor(const Matrix &m, int row, int col)
 {
   return (row + col) % 2 == 0 ? minor(m, row, col) : -minor(m, row, col);
 }
@@ -140,7 +144,6 @@ Matrix Matrix::translation(float x, float y, float z)
 {
 
   Matrix M(4);
-
   M(0, 0) = 1;
   M(1, 1) = 1;
   M(2, 2) = 1;
@@ -148,18 +151,51 @@ Matrix Matrix::translation(float x, float y, float z)
   M(0, 3) = x;
   M(1, 3) = y;
   M(2, 3) = z;
-
   return M;
 }
 
 Matrix Matrix::scaling(float x, float y, float z)
 {
   Matrix M(4);
-
   M(0, 0) = x;
   M(1, 1) = y;
   M(2, 2) = z;
   M(3, 3) = 1;
+  return M;
+}
 
+Matrix Matrix::rotation_x(float r)
+{
+  Matrix M(4);
+  M(0, 0) = 1;
+  M(1, 1) = cos(r);
+  M(1, 2) = -sin(r);
+  M(2, 1) = sin(r);
+  M(2, 2) = cos(r);
+  M(3, 3) = 1;
+  return M;
+}
+
+Matrix Matrix::rotation_y(float r)
+{
+  Matrix M(4);
+  M(0, 0) = cos(r);
+  M(0, 2) = sin(r);
+  M(1, 1) = 1;
+  M(2, 1) = -sin(r);
+  M(2, 2) = cos(r);
+  M(3, 3) = 1;
+  return M;
+}
+
+Matrix Matrix::rotation_z(float r)
+{
+  Matrix M(4);
+  M(0, 0) = cos(r);
+  M(0, 1) = -sin(r);
+  M(1, 0) = sin(r);
+  M(1, 1) = cos(r);
+  M(2, 2) = 1;
+  M(3, 3) = 1;
   return M;
 }
