@@ -6,3 +6,6 @@ add_executable(runTests test/testSuite.cpp src/Tuple.cpp src/Matrix.cpp src/Canv
 
 # projectile "mini application" target
 add_executable(projectile test/projectile.cpp src/Tuple.cpp src/Canvas.cpp)  # add executable target
+
+# clock exercise program target
+add_executable(clock test/clock.cpp src/Tuple.cpp src/Canvas src/Matrix)  # add executable target
